@@ -1,0 +1,25 @@
+&i2c3 {
+        pinctrl-names = "default", "sleep";
+        i2c-scl-rising-time-ns = <100>;
+        i2c-scl-falling-time-ns = <7>;
+        status = "okay";
+        /delete-property/dmas;
+        /delete-property/dma-names;
+
+	goodix-ts@5d {
+		compatible = "goodix,gt9xx";
+		reg = <0x5d>;
+		interrupt-parent = <&gpioi>;
+		reset-gpios = <&gpioi 2 GPIO_ACTIVE_LOW>;
+		irq-gpios = <&gpioi 7 IRQ_TYPE_EDGE_FALLING>;
+		irq-flags = <2>;		
+		touchscreen-max-id = <11>;
+		touchscreen-size-x = <1024>;
+		touchscreen-size-y = <768>;
+		goodix,int-sync = <1>;
+		goodix,type-a-report = <0>;
+		goodix,driver-send-cfg = <1>;
+		goodix,cfg-group0 = [63 00 04 00 03 0A 0D 00 01 0F 1E 0F 50 32 03 05 00 00 00 00 00 00 05 00 00 00 00 8C 2E 0E 27 25 F4 0A 00 00 00 9B 03 1D 00 01 00 00 00 00 00 00 00 00 00 19 4B 94 C5 02 07 00 00 04 A4 1C 00 8A 22 00 70 2B 00 5C 36 00 4D 43 00 4D 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 04 06 08 0A 0C 0E 10 12 14 16 18 1A 1C 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 04 06 08 0A 0C 0F 10 12 13 14 16 18 1C 1D 1E 1F 20 21 22 24 26 28 29 2A 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 85 01];
+		status = "okay";	
+	};
+};
